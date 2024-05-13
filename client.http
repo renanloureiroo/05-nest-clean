@@ -1,4 +1,6 @@
 @baseURL = http://localhost:3333
+@authToken = {{authenticate.response.body.access_token}}
+
 
 # @name create_account
 POST {{baseURL}}/accounts
@@ -21,5 +23,24 @@ Content-Type: application/json
   "email": "renanloureiro.dev@gmail.com",
   "password": "12345678"
 }
+
+###
+
+# @name crete_question
+POST {{baseURL}}/questions
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "title": "A new question 2",
+  "content": "A new question teste"
+}
+
+###
+
+# @name fetch_recente_questions
+GET {{baseURL}}/questions?page=3
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 ###
