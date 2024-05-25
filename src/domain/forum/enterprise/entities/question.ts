@@ -10,13 +10,13 @@ import { Slug } from './values-objects/slug'
 
 export interface QuestionProps {
   authorId: UniqueEntityId
-  bestAnswerId?: UniqueEntityId
+  bestAnswerId?: UniqueEntityId | null
   attachments: QuestionAttachmentList
   title: string
   content: string
   slug: Slug
   createdAt: Date
-  updatedAt?: Date
+  updatedAt?: Date | null
 }
 
 class Question extends AggregateRoot<QuestionProps> {
@@ -28,13 +28,10 @@ class Question extends AggregateRoot<QuestionProps> {
     return this.props.bestAnswerId
   }
 
-  set bestAnswerId(value: UniqueEntityId | undefined) {
+  set bestAnswerId(value: UniqueEntityId | undefined | null) {
     if (value === undefined) return
 
-    if (
-      this.props.bestAnswerId === undefined ||
-      !this.props.bestAnswerId?.equals(value)
-    ) {
+    if (value && value !== this.props.bestAnswerId) {
       this.addDomainEvent(new QuestionBestAnswerChosenEvent(this, value))
     }
     this.props.bestAnswerId = value
@@ -77,7 +74,7 @@ class Question extends AggregateRoot<QuestionProps> {
     return this.props.createdAt
   }
 
-  get updatedAt(): Date | undefined {
+  get updatedAt(): Date | null | undefined {
     return this.props.updatedAt
   }
 

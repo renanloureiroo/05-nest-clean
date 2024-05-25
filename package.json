@@ -17,7 +17,8 @@
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
     "test:debug": "vitest --inspect-brk --inspect --logHeapUsage --threads=false",
-    "test:e2e": "NODE_ENV=test vitest run --config ./vitest.config.e2e.ts"
+    "test:e2e": "NODE_ENV=test vitest run --config ./vitest.config.e2e.ts",
+    "test:all": "npm run test && npm run test:e2e"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

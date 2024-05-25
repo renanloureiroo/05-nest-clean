@@ -14,7 +14,7 @@ class InMemoryQuestionsRepository implements QuestionsRepository {
   async findManyRecent({ page }: PaginationParams): Promise<Question[]> {
     const questions = this.questions
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
-      .slice((page - 1) * 20, page * 20)
+      .slice((page! - 1) * 20, page! * 20)
 
     return questions
   }

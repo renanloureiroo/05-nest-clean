@@ -5,6 +5,7 @@ import { Question } from '../../enterprise/entities/question'
 import { QuestionAttachment } from '../../enterprise/entities/question-attachment'
 import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list'
 import { QuestionsRepository } from '../repositories/questions-repository'
+import { Injectable } from '@nestjs/common'
 
 interface CreateQuestionUseCaseDTO {
   authorId: string
@@ -20,6 +21,7 @@ type CreateQuestionUseCaseResponse = Either<
   }
 >
 
+@Injectable()
 class CreateQuestionUseCase {
   constructor(private readonly questionRepository: QuestionsRepository) {}
 
