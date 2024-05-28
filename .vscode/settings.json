@@ -1,3 +1,4 @@
 {
-  "vitest.disableWorkspaceWarning": true
+  "vitest.disableWorkspaceWarning": true,
+  "cSpell.words": ["encrypter", "Encrypter", "hasher", "Hasher"]
 }

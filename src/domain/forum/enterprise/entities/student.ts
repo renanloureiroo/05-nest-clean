@@ -3,6 +3,8 @@ import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 
 interface StudentProps {
   name: string
+  email: string
+  password: string
 }
 
 class Student extends Entity<StudentProps> {
@@ -10,8 +12,12 @@ class Student extends Entity<StudentProps> {
     return this.props.name
   }
 
-  set name(value: string) {
-    this.props.name = value
+  get email() {
+    return this.props.email
+  }
+
+  get password() {
+    return this.props.password
   }
 
   static create(props: StudentProps, id?: UniqueEntityId) {
@@ -25,4 +31,4 @@ class Student extends Entity<StudentProps> {
   }
 }
 
-export { Student }
+export { Student, StudentProps }
