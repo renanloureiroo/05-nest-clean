@@ -13,6 +13,7 @@ import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 
 import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases/authenticate-student'
 import { StudentEmailOrPasswordIncorrect } from '@/domain/forum/application/use-cases/errors/student-email-or-password-incorrect-error'
+import { Public } from '@/infra/auth/public'
 
 const authenticateBodySchema = z.object({
   email: z.string().email(),
@@ -21,6 +22,7 @@ const authenticateBodySchema = z.object({
 
 type AuthenticateDTO = z.infer<typeof authenticateBodySchema>
 
+@Public()
 @Controller('/sessions')
 export class AuthenticateController {
   constructor(

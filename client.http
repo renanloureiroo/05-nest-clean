@@ -1,5 +1,5 @@
 @baseURL = http://localhost:3333
-@authToken = {{authenticate.response.body.access_token}}
+@authToken = {{authenticate.response.body.accessToken}}
 
 
 # @name create_account
