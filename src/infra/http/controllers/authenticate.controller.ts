@@ -1,9 +1,18 @@
-import { Body, Controller, Post, UsePipes, HttpCode } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Post,
+  UsePipes,
+  HttpCode,
+  UnauthorizedException,
+  BadRequestException,
+} from '@nestjs/common'
 
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 
 import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases/authenticate-student'
+import { StudentEmailOrPasswordIncorrect } from '@/domain/forum/application/use-cases/errors/student-email-or-password-incorrect-error'
 
 const authenticateBodySchema = z.object({
   email: z.string().email(),
@@ -30,7 +39,14 @@ export class AuthenticateController {
     })
 
     if (result.isLeft()) {
-      throw new Error()
+      const error = result.value
+
+      switch (error.constructor) {
+        case StudentEmailOrPasswordIncorrect:
+          throw new UnauthorizedException(error.message)
+        default:
+          throw new BadRequestException(error.message)
+      }
     }
 
     return result.value
