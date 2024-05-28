@@ -36,6 +36,6 @@ describe('E2E: authenticate', () => {
     })
 
     expect(response.status).toBe(200)
-    expect(response.body).toHaveProperty('access_token')
+    expect(response.body).toHaveProperty('accessToken')
   })
 })

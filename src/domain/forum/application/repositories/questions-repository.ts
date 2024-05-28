@@ -9,6 +9,7 @@ abstract class QuestionsRepository {
   abstract findById(questionId: string): Promise<Question | null>
   abstract findManyRecent(params: PaginationParams): Promise<Question[]>
   abstract update(question: Question): Promise<void>
+  abstract count(): Promise<number>
 }
 
 export { QuestionsRepository }

@@ -39,6 +39,8 @@ export class FetchRecentQuestionsController {
       questions: result.value.questions.map((question) =>
         QuestionPresenter.toHttp(question),
       ),
+      currentPage: result.value.currentPage,
+      totalPages: result.value.totalPages,
     }
   }
 }

@@ -8,6 +8,10 @@ import { PrismaQuestionMapper } from '../mappers/prisma-question-mapper'
 @Injectable()
 class PrismaQuestionsRepository implements QuestionsRepository {
   constructor(private readonly prismaService: PrismaService) {}
+  async count(): Promise<number> {
+    const numberOfQuestions = await this.prismaService.question.count()
+    return numberOfQuestions
+  }
 
   async create(question: Question): Promise<void> {
     const data = PrismaQuestionMapper.toPrisma(question)

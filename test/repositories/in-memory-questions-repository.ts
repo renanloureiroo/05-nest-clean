@@ -11,6 +11,10 @@ class InMemoryQuestionsRepository implements QuestionsRepository {
     private readonly questionAttachmentsRepository: QuestionAttachmentsRepository,
   ) {}
 
+  count(): Promise<number> {
+    return Promise.resolve(this.questions.length)
+  }
+
   async findManyRecent({ page }: PaginationParams): Promise<Question[]> {
     const questions = this.questions
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())

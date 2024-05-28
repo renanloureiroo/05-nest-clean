@@ -12,6 +12,8 @@ type ListRecentQuestionsUseCaseResponse = Either<
   null,
   {
     questions: Question[]
+    totalPages: number
+    currentPage: number
   }
 >
 
@@ -27,8 +29,12 @@ export class ListRecentQuestionsUseCase {
       perPage: 20,
     })
 
+    const totalQuestions = await this.questionRepository.count()
+
     return right({
       questions,
+      totalPages: Math.ceil(totalQuestions / 20),
+      currentPage: page,
     })
   }
 }
