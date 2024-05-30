@@ -3,7 +3,7 @@ import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-atta
 
 import { Attachment as PrismaAnswerAttachment } from '@prisma/client'
 
-class PrismaAnswerAttachmentAttachmentMapper {
+class PrismaAnswerAttachmentMapper {
   static toDomain(raw: PrismaAnswerAttachment): AnswerAttachment {
     if (!raw.answerId) throw new Error('AnswerId is required')
 
@@ -17,4 +17,4 @@ class PrismaAnswerAttachmentAttachmentMapper {
   }
 }
 
-export { PrismaAnswerAttachmentAttachmentMapper }
+export { PrismaAnswerAttachmentMapper }
