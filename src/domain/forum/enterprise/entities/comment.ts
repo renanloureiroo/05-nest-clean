@@ -5,7 +5,7 @@ export interface CommentProps {
   authorId: UniqueEntityId
   content: string
   createdAt: Date
-  updatedAt?: Date
+  updatedAt?: Date | null
 }
 
 abstract class Comment<
@@ -28,7 +28,7 @@ abstract class Comment<
     return this.props.createdAt
   }
 
-  get updatedAt(): Date | undefined {
+  get updatedAt(): Date | undefined | null {
     return this.props.updatedAt
   }
 
